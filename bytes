@@ -2,6 +2,15 @@
 
 int main()
 {
-    printf("helloooo, deammmmmboyyy\n");
+    int numentero = 7;
+    double numDouble = 3.99;
+    char Char = 's';
+
+    printf("el numero entero 7 ocupa %zu bytes\n\n", sizeof(numentero));
+
+    printf("direccion del double 3.99: %p\n", (void *)&numDouble);
+
+    printf("direccion de la letra 's': %p\n", (void *)&Char);
+
     return 0;
 }
