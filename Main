@@ -1,0 +1,159 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "competidor.h"
+#include "ordenamiento.h"
+
+#define MAX 50 // maximo de  los competidores
+
+// Pide los datos de un competidor y lo guarda en la posicion que le toca
+void agregar(Competidor lista[], int *cantidad)
+{
+    int id;
+    int num;
+    int i;
+    char nombre[MAX_NOMBRE];
+
+    if (*cantidad >= MAX)
+    {
+        printf("Ya no caben mas competidores\n");
+        return;
+    }
+
+    printf("Digite el ID: ");
+    scanf("%d", &id);
+    printf("Digite el nombre: ");
+    scanf("%s", nombre);
+    printf("Cuantos puntajes tiene?: ");
+    scanf("%d", &num);
+
+    if (num <= 0)
+    {
+        printf("Numero de puntajes no valido\n");
+        return;
+    }
+
+    // cuando creas un competidor, si no hay memoria para los puntajes, te muestra un mensaje de que no hay memoria
+    if (crear_competidor(&lista[*cantidad], id, nombre, num) == 0)
+    {
+        printf("No hay memoria\n");
+        return;
+    }
+
+    for (i = 0; i < num; i++)
+    {
+        printf("Puntaje %d: ", i + 1);
+        scanf("%f", &lista[*cantidad].puntajes[i]);
+    }
+
+    calcular_promedio(&lista[*cantidad]);
+    *cantidad = *cantidad + 1;
+    printf("Competidor agregado!\n");
+}
+
+int main()
+{
+    Competidor lista[MAX];
+    int cantidad = 0;
+    int opcion;
+    int metodo;
+    int tipo;
+    long comparaciones;
+    int i;
+
+    do
+    {
+        printf("\n Streth figthers (marcador)\n");
+        printf("1. Agregar competidor\n");
+        printf("2. Ver competidores\n");
+        printf("3. Ordenar\n");
+        printf("0. Salir\n");
+        printf("Elija una opcion: ");
+        scanf("%d", &opcion);
+
+        if (opcion == 1)
+        {
+            agregar(lista, &cantidad);
+        }
+        else if (opcion == 2)
+        {
+            if (cantidad == 0)
+            {
+                printf("No hay competidores todavia(este lugar esta mas vacio como mis sueños)\n");
+            }
+            else
+            {
+                imprimir_tabla(lista, cantidad);
+            }
+        }
+        else if (opcion == 3)
+
+        { // en cambio de que no tenga competidores te muestra un mensaje de que necesitas mas competidores
+            if (cantidad < 2)
+            {
+                printf("Necesita minimo 2 competidores para ordenar\n");
+            }
+            else
+            {
+                printf("1. Burbuja\n2. Seleccion\n3. Insercion\n");
+                printf("Que metodo quiere?: ");
+                scanf("%d", &metodo);
+                printf("1. Menor a mayor\n2. Mayor a menor\n");
+                printf("Como lo quiere ordenar?: ");
+                scanf("%d", &tipo);
+
+                if (tipo == 1)
+                {
+                    tipo = ASCENDENTE;
+                }
+                else
+                {
+                    tipo = DESCENDENTE;
+                }
+
+                /* se muestra la tabla ANTES de ordenar */
+                printf("\nantes del ordenamiento");
+                imprimir_tabla(lista, cantidad);
+
+                if (metodo == 1)
+                {
+                    comparaciones = bubble_sort(lista, cantidad, tipo);
+                }
+                else if (metodo == 2)
+                {
+                    comparaciones = selection_sort(lista, cantidad, tipo);
+                }
+                else if (metodo == 3)
+                {
+                    comparaciones = insertion_sort(lista, cantidad, tipo);
+                }
+                else
+                {
+                    printf("Ese metodo no existe\n");
+                    comparaciones = -1;
+                }
+
+                /* se muestra la tabla DESPUES de ordenar */
+                if (comparaciones != -1)
+                {
+                    printf("\n despues del ordenamiento ");
+                    imprimir_tabla(lista, cantidad);
+                    printf("Comparaciones: %ld\n", comparaciones);
+                }
+            }
+        }
+        else if (opcion != 0)
+        {
+            printf("Opcion no valida\n");
+        }
+
+    } while (opcion != 0);
+
+    // liberar la memoria de los puntajes
+    for (i = 0; i < cantidad; i++)
+    {
+        liberar_competidor(&lista[i]);
+    }
+
+    printf("archivederchi!\n");
+    return 0;
+}
