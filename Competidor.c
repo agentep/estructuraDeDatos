@@ -76,7 +76,7 @@ void imprimir_tabla(const Competidor *v, int n)
 {
     int i;
 
-    printf("\n%-5s %-15s %s\n", "ID", "NOMBRE", "PUNTAJES");
+    printf("\n%-5s %-15s %s\n", "ID", "NOMBRE", "PUNTAJES DE LOS PARTICIPANTES");
     printf("--------------------------------------------------\n");
     for (i = 0; i < n; i++)
     {
