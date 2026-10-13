@@ -41,7 +41,7 @@ long bubble_sort(Competidor *v, int n, int orden)
                 cambio = 1;
             }
         }
-        /* si en una vuelta no cambio nada, ya esta ordenado */
+        // si en una vuelta no cambio nada, ya esta ordenado 
         if (cambio == 0)
         {
             break;
@@ -56,7 +56,7 @@ long selection_sort(Competidor *v, int n, int orden)
 {
     long comparaciones = 0;
     int i, j;
-    int pos; /* posicion del mejor elemento encontrado */
+    int pos; // posicion del mejor elemento encontrado 
 
     for (i = 0; i < n - 1; i++)
     {
@@ -95,7 +95,7 @@ long insertion_sort(Competidor *v, int n, int orden)
             comparaciones++;
             if (mal_ordenados(v[j].promedio, actual.promedio, orden) == 1)
             {
-                v[j + 1] = v[j]; /* corre el elemento a la derecha */
+                v[j + 1] = v[j]; // corre el elemento a la derecha (que pereza)
                 j--;
             }
             else

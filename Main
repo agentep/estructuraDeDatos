@@ -110,7 +110,7 @@ int main()
                     tipo = DESCENDENTE;
                 }
 
-                /* se muestra la tabla ANTES de ordenar */
+                // se muestra la tabla antes de ordenar
                 printf("\nantes del ordenamiento");
                 imprimir_tabla(lista, cantidad);
 
@@ -132,7 +132,7 @@ int main()
                     comparaciones = -1;
                 }
 
-                /* se muestra la tabla DESPUES de ordenar */
+                // se muestra la tabla despues de ordenar
                 if (comparaciones != -1)
                 {
                     printf("\n despues del ordenamiento ");
@@ -143,7 +143,7 @@ int main()
         }
         else if (opcion != 0)
         {
-            printf("Opcion no valida\n");
+            printf("Opcion invalida\n");
         }
 
     } while (opcion != 0);
@@ -154,6 +154,6 @@ int main()
         liberar_competidor(&lista[i]);
     }
 
-    printf("archivederchi!\n");
+    printf("archivederchiiiiiiiiiiii!\n");
     return 0;
 }
