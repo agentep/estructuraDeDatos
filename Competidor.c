@@ -83,3 +83,20 @@ void imprimir_tabla(const Competidor *v, int n)
         imprimir_competidor(&v[i]);
     }
 }
+
+// recorre la lista y devuelve la posicion del que tiene el promedio mas alto
+int buscar_mejor(const Competidor *v, int n)
+{
+    int i;
+    int pos = 0; // empieza suponiendo que el primero es el mejor
+
+    for (i = 1; i < n; i++)
+    {
+        if (v[i].promedio > v[pos].promedio)
+        {
+            pos = i;
+        }
+    }
+
+    return pos;
+}
