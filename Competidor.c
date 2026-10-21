@@ -100,3 +100,25 @@ int buscar_mejor(const Competidor *v, int n)
 
     return pos;
 }
+
+
+
+
+
+
+// recorre la lista y devuelve la posicion del que tiene el promedio mas bajo
+int buscar_peor(const Competidor *v, int n)
+{
+    int i;
+    int por = 0; // empieza suponiendo el puntaje menor
+
+    for (i = 1; i < n; i++)
+    {
+        if (v[i].promedio < v[por].promedio)
+        {
+            por = i;
+        }
+    }
+
+    return por;
+}

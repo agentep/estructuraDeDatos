@@ -60,6 +60,7 @@ int main()
     long comparaciones;
     int i;
     int mejor;
+    int peor;
 
     do
     {
@@ -68,6 +69,7 @@ int main()
         printf("2. Ver competidores\n");
         printf("3. Ordenar\n");
         printf("4. Ver al mejor competidor\n");
+        printf("5.el peor puntaje\n");
         printf("0. Salir\n");
         printf("Elija una opcion: ");
         scanf("%d", &opcion);
@@ -157,10 +159,34 @@ int main()
                 imprimir_tabla(&lista[mejor], 1);
             }
         }
+        else if (opcion == 5)
+        {
+            if (cantidad == 0)
+            {
+                printf("No hay competidores todavia\n");
+            }
+            else
+            {
+                // busca la posicion del peor y muestra solo a ese competidor
+                peor = buscar_peor(lista, cantidad);
+                printf("\nEl competidor con el puntaje menor es:");
+                imprimir_tabla(&lista[peor], 1);
+            }
+        }
+        // esto va al final: si no fue ninguna de las opciones de arriba y no es 0, es invalida
         else if (opcion != 0)
         {
             printf("Opcion invalida\n");
         }
+
+
+
+
+
+
+
+
+
 
     } while (opcion != 0);
 

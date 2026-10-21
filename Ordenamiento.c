@@ -22,7 +22,7 @@ int mal_ordenados(float a, float b, int orden)
 }
 
 // buble sort, compara cada elemento con el de al lado y si estan mal ordenados los cambia, Se repite hasta que quede ordenado
-// personalmente me gusta mas el buble sort
+// personalmente me gusta mas el bublesort
 long bubble_sort(Competidor *v, int n, int orden)
 {
     long comparaciones = 0;

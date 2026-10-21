@@ -34,4 +34,7 @@ void imprimir_tabla(const Competidor *v, int n);
 // busca al competidor con el promedio mas alto y devuelve su posicion
 int buscar_mejor(const Competidor *v, int n);
 
+// busca al competidor con el promedio mas bajo y devuelve su posicion
+int buscar_peor(const Competidor *v, int n);
+
 #endif
